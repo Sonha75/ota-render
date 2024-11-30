@@ -10,7 +10,23 @@ const topic = "esp32/sonha/otaSTM32"
 //CREATE EXPRESS APP
 app.use(bodyParser.urlencoded({extended: true}))
  
+client.on('connect', () => {
+    console.log('Connected to MQTT broker!')
 
+    // Đăng ký (subscribe) vào topic
+    client.subscribe(topic, (err) => {
+        if (!err) {
+            console.log(`Subscribed to topic: ${topic}`)
+        } else {
+            console.error(`Failed to subscribe to topic: ${err.message}`)
+        }
+    })
+})
+
+// Nghe tin nhắn từ topic và in ra console
+client.on('message', (topic, message) => {
+    console.log(`Message received from topic ${topic}: ${message.toString()}`)
+})
  //server.js
 
 // SET STORAGE
