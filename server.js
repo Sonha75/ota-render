@@ -3,7 +3,7 @@ const express = require('express')
 const bodyParser= require('body-parser')
 const multer = require('multer')
 const mqtt = require("mqtt")
-var client = mqtt.connect('broker.hivemq.com')
+var client = mqtt.connect('mqtts://broker.hivemq.com')
 
 const app = express();
 const topic = "esp32/sonha/otaSTM32"
